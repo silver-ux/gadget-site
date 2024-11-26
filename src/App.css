@@ -1,0 +1,217 @@
+/* ロード画面 */
+
+#loading {
+  background-color: #d3d3d3;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  transition: ease 1s;
+  display: grid;
+  place-items: center;
+}
+
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes loading-anime {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+#loading-text {
+  color: #333;
+  font-size: 3rem;
+  font-weight: bold;
+
+  span {
+    animation: loading-anime .3s backwards;
+    display: inline-block;
+  }
+}
+
+/* =========================================================== */
+
+.logo {
+  font-size: 2.7rem;
+  font-family: "Sour Gummy", sans-serif;
+  padding: 3px 10px;
+  position: relative;
+  border-radius: 10px;
+  transition: .5s ease;
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    content: '';
+    transition: .4s ease-out;
+  }
+
+  &::before {
+    border-left: solid 3px;
+    border-top: solid 3px;
+    /* border-radius: 10px 0 0 0; */
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    border-right: solid 3px;
+    border-bottom: solid 3px;
+    /* border-radius: 0 10px 10px 10px; */
+    bottom: 0;
+    right: 0;
+  }
+
+  &:hover {
+    background-color: #000000;
+    text-shadow: 2px 2px 4px #51e5ff;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    width: 185px;
+    height: 56px;
+    opacity: 1;
+  }
+
+  &:hover::before {
+    border-radius: 10px 10px 0 10px;
+  }
+
+  &:hover::after {
+    border-radius: 0 10px 10px 10px;
+  }
+
+}
+
+/* ------------------------------------------------------------------ */
+
+/* ヘッダー */
+
+header {
+  padding: 0.7rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  .container {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(15px);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+
+    nav ul {
+      display: flex;
+
+      li {
+        margin-left: 2.5rem;
+        margin-right: .85rem;
+        font-size: 20px;
+        position: relative;
+        transition: ease .4s;
+        padding: 3px 8px;
+      }
+    }
+  }
+}
+
+.nav-list::after {
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #ff6262;
+  transition: .4s ease;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+
+.nav-list:hover::after {
+  width: 100%;
+}
+
+.nav-list:hover {
+  /* color: #333; */
+  text-shadow:
+    2px 2px 0px #000, -2px -2px 0px #000,
+    -3px 2px 0px #000, 2px -2px 0px #000,
+    2px 0px 0px #000, -2px -0px 0px #000,
+    0px 2px 0px #000, 0px -2px 0px #000;
+}
+
+/* ---------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  z-index: 0;
+  height: 100vh;
+  background-position: center top;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .title {
+    font-size: 10rem;
+    margin: 0 10%;
+    font-family: "Mochiy Pop One", sans-serif;
+    user-select: none;
+    text-shadow: #000 0 0 10px;
+
+    span {
+      background: linear-gradient(transparent 60%, #f2cf39 0%);
+      display: inline;
+      padding: 0 5px 0;
+      background-repeat: no-repeat;
+      background-size: 0% 100%;
+      animation: marker 2s ease forwards 1.5s;
+    }
+  }
+
+
+}
+
+@keyframes marker {
+  from {
+    background-size: 0 100%;
+  }
+
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+
+
+.hero:before {
+  content: '';
+  background-image: url('/images/hero.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  z-index: -1;
+}
